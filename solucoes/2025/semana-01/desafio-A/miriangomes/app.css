@@ -1,0 +1,69 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  /* Faz o display ocupar todas as 4 colunas */
+  grid-column: 1 / -1; 
+  background-color: rgba(0, 0, 0, .75);
+  /* Configura o alinhamento de texto (display flex para alinhar verticalmente) */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinha o texto à direita (horizontal) */
+  justify-content: flex-end; /* Distribui o espaço entre o topo e a base */
+  padding: 15px;
+  /* Garante que o texto de números longos se adapte */
+  word-wrap: break-word;
+  word-break: break-all;
+  /* Garante que o conteúdo não force o crescimento do contêiner */
+  overflow: hidden; 
+}
+
+.previous-operand {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.5rem;
+}
+
+.current-operand {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 5px; 
+}
+
+  /* Opcional: Estilo diferenciado para operadores e botões especiais */
+.calculator-grid > button:nth-child(4n), /* Seleciona o 4º, 8º, 12º... (operadores) */
+.calculator-grid > button:last-child { /* Seleciona o botão '=' */
+  background-color: #ff9500; /* Cor Laranja */
+  color: white;
+}
+
+.calculator-grid > button:hover {
+  /* Efeito de hover: mais opaco quando o mouse está sobre o botão */
+  background-color: rgba(255, 255, 255, .3);
+}
+
+.calculator-grid {
+  display: grid;
+    
+  /* CHAVE: 4 colunas que dividem o espaço igualmente (fr) */
+  grid-template-columns: repeat(4, 1fr); 
+  /* Configuração das Linhas: Altura fixa (para touch target) */
+  grid-template-rows: minmax(100px, auto) repeat(5, 60px); 
+  /* Largura do Container: 90% da largura da tela (adaptável) */
+  width: 90vw; 
+  /* LIMITAÇÃO MÁXIMA: Garante que não fique gigantesca em um monitor */
+  max-width: 400px; 
+}
